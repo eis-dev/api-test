@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr-TR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>API TEST</title>
+    <style>
+        * {
+            transition: 750ms all
+        }
+        body {
+            background: #faf7a0;
+        }
+        h1 {
+            color: #c6c62a;
+        }
+        .success {
+            background: #b8ffc0;
+        }
+        .success h1 {
+            color: #50ad60;
+        }
+        h1 {
+            text-align: center;
+            font-size: calc(16vw);
+            font-family: calibri;
+        }
+        .danger {
+            background: #f3a5a5;
+        }
+        .danger h1 {
+            color: #843333;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="iswork">...</h1>
+    <script src="axios.min.js"></script>
+<script>
+    let lc = window.location.hash.replace("#","");
+    console.log(lc);
+    function test() {
+        axios.get(lc)
+            .then(function (response) {
+                if (response.data.languages.length) {
+                    document.title = "AKTİF - API TEST";
+                    document.getElementById("iswork").innerText = "AKTİF";
+                    document.body.classList.add("success");
+                } else {
+                    document.title = "PASİF - API TEST";
+                    document.getElementById("iswork").innerText = "PASİF";
+                    document.body.classList.add("danger");
+                }
+                test();
+            })
+            .catch(function (response) {
+                document.title = "PASİF - API TEST";
+                document.getElementById("iswork").innerText = "PASİF";
+                document.body.classList.add("danger");
+                test();
+            });
+    }
+    test();
+</script>
+</body>
+</html>
