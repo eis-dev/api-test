@@ -47,17 +47,26 @@
                 if (response.data.languages.length) {
                     document.title = "AKTİF - API TEST";
                     document.getElementById("iswork").innerText = "AKTİF";
+                    try {
+                        document.body.classList.remove("danger");
+                    } catch (err) {}
                     document.body.classList.add("success");
                 } else {
                     document.title = "PASİF - API TEST";
                     document.getElementById("iswork").innerText = "PASİF";
+                    try {
+                        document.body.classList.remove("success");
+                    } catch (err) {}
                     document.body.classList.add("danger");
-                }
+                    }
                 test();
             })
             .catch(function (response) {
                 document.title = "PASİF - API TEST";
                 document.getElementById("iswork").innerText = "PASİF";
+                try {
+                    document.body.classList.remove("success");
+                } catch (err) {}
                 document.body.classList.add("danger");
                 test();
             });
